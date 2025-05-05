@@ -10,5 +10,4 @@ class ArgumentParser:
         self.parser.add_argument("path_to_save", type=str)
         self.parser.add_argument("-w", "--width", default=360, type=int)
         arguments = self.parser.parse_args()
-        print(arguments)
         return arguments
