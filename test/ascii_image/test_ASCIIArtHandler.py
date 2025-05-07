@@ -31,7 +31,6 @@ class TestASCIIArtHandler:
         image_path = tmp_path / "test.png"
         Image.new("RGB", (10, 10), "blue").save(image_path)
         image = handler.load_image(image_path)
-
         assert image is not None
         assert image.size == (10, 10)
 

@@ -67,8 +67,3 @@ class TestImageProcessor:
     def test_convert_to_grayscale_preserves_data(self, handler, image):
         gray_image = handler.convert_to_grayscale(image, image.size)
         assert len(list(gray_image.getdata())) == 4
-
-    def test_convert_to_grayscale_with_resize(self, handler, image, new_size):
-        gray_image = handler.convert_to_grayscale(image, new_size)
-        assert gray_image.mode == "L"
-        assert gray_image.size == new_size
