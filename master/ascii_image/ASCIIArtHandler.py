@@ -23,6 +23,6 @@ class ASCIIArtHandler:
         try:
             with open(path, 'w') as file:
                 file.write(ascii_art)
-                print(f"\033[92mArt is saved successfully\033[0m\n")
+                print(f"\n\033[92mArt is saved successfully\033[0m\n")
         except IOError as e:
             raise WrongPathException(f"Could not write to file {path}") from e

@@ -22,7 +22,7 @@ def main():
         ascii_art = ascii_converter.create_ascii_art(ascii_data, size)
         art_handler.save_to_file(ascii_art, path_to_save)
     except exceptions as e:
-        print(e)
+        print(f"\n\033[91m{e}\033[0m\n")
 
 
 if __name__ == "__main__":
