@@ -18,8 +18,11 @@ class ASCIIArtHandler:
             ) from e
 
     def save_to_file(self, ascii_art, path):
+        if not path.lower().endswith('.txt'):
+            raise WrongPathException(f"Path {path} must point to a txt file")
         try:
-            with open(path, "w") as file:
+            with open(path, 'w') as file:
                 file.write(ascii_art)
-        except WrongPathException(f"The path: {path} is incorrect") as e:
-            print(e)
+                print(f"\033[92mArt is saved successfully\033[0m\n")
+        except IOError as e:
+            raise WrongPathException(f"Could not write to file {path}") from e

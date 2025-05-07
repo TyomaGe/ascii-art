@@ -16,9 +16,9 @@ class ImageProcessor:
         try:
             width = int(size[0])
             height = int(size[1])
-        except (ValueError, TypeError):
+        except (ValueError, TypeError) as e:
             raise InvalidSizeValueException(
-                "Width and height must be integers")
+                "Width and height must be integers") from e
 
         if width <= 0:
             raise WrongImageWidthException("Width must be positive")
