@@ -3,7 +3,24 @@ import argparse
 
 class ArgumentParser:
     def __init__(self):
-        self.parser = argparse.ArgumentParser()
+        description = (
+            "Convert images to ASCII art. The program processes standard "
+            "image formats (JPG, PNG, etc.)\nby converting each pixel to "
+            "a corresponding ASCII character,\nproducing art that can be "
+            "saved as a text file."
+        )
+        epilog = (
+            "Examples:\n"
+            "  python -m master.core.main ./image.jpg "
+            "./output.txt\n"
+            "  python -m master.core.main ./image.png "
+            "./output.txt --size 720 480\n"
+        )
+        self.parser = argparse.ArgumentParser(
+                description=description,
+                epilog=epilog,
+                formatter_class=argparse.RawDescriptionHelpFormatter
+        )
 
     def get_arguments(self):
         self.parser.add_argument(
@@ -19,8 +36,9 @@ class ArgumentParser:
         self.parser.add_argument(
             "--size",
             nargs=2,
+            metavar=("WIDTH", "HEIGHT"),
             default=None,
-            help="First argument is width. Second argument is height"
+            help="Define new image width and height"
         )
         arguments = self.parser.parse_args()
         return arguments
