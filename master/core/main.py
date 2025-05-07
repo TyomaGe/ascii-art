@@ -20,9 +20,8 @@ def main():
         ascii_data = ascii_converter.pixels_to_ascii(gray_image)
         ascii_art = ascii_converter.create_ascii_art(ascii_data, size)
         art_handler.save_to_file(ascii_art, path_to_save)
-    except WrongImageWidthException as e:
-        print(e)
-    except WrongImageHeightException as e:
+    except (WrongImageWidthException, InvalidImageException,
+            WrongImageHeightException) as e:
         print(e)
 
 

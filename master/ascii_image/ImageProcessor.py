@@ -1,5 +1,4 @@
 from PIL import Image
-
 from master.models.exceptions import *
 
 
