@@ -34,14 +34,14 @@ class ArgumentParser:
             help="You need to specify the path where to save the art"
         )
         self.parser.add_argument(
-            "--size",
+            "-s", "--size",
             nargs=2,
             metavar=("WIDTH", "HEIGHT"),
             default=None,
             help="Define new image width and height"
         )
         self.parser.add_argument(
-            "--invert",
+            "-i", "--invert",
             action="store_true",
             help="Invert ASCII art (negative effect)"
         )
