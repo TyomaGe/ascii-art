@@ -6,10 +6,10 @@ from PyQt6.QtCore import Qt, QTimer
 
 class ASCIIArtViewer:
     def __init__(self, ascii_art, size):
-        self.app = QApplication(sys.argv)
-        self.window = QMainWindow()
-        self.ascii_art = ascii_art
-        self.size = size
+        self.__app = QApplication(sys.argv)
+        self.__window = QMainWindow()
+        self.__ascii_art = ascii_art
+        self.__size = size
         self.__setup_ui_components()
         self.__init_window_config()
         self.__setup_font()
@@ -21,7 +21,7 @@ class ASCIIArtViewer:
     def __setup_ui_components(self):
         self.scroll = QScrollArea()
         self.scroll.setWidgetResizable(True)
-        self.window.setCentralWidget(self.scroll)
+        self.__window.setCentralWidget(self.scroll)
         self.main_label = QLabel()
         self.scroll.setWidget(self.main_label)
 
@@ -35,8 +35,8 @@ class ASCIIArtViewer:
         self.main_label.setFont(font)
 
     def __init_window_config(self):
-        self.window.setWindowTitle("ASCII Art Viewer")
-        self.window.setGeometry(0, 0, self.size[0], self.size[1] * 2)
+        self.__window.setWindowTitle("ASCII Art Viewer")
+        self.__window.setGeometry(0, 0, self.__size[0], self.__size[1] * 2)
         self.main_label.setAlignment(
             Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignTop)
         self.main_label.setAttribute(Qt.WidgetAttribute.WA_StaticContents)
@@ -44,15 +44,15 @@ class ASCIIArtViewer:
 
     def __finalize_setup(self):
         self.main_label.adjustSize()
-        self.window.update()
+        self.__window.update()
 
     def __window_open(self):
-        self.window.show()
+        self.__window.show()
 
     def __window_close(self):
-        sys.exit(self.app.exec())
+        sys.exit(self.__app.exec())
 
     def __load_art(self):
         self.main_label.setUpdatesEnabled(False)
-        self.main_label.setText(self.ascii_art)
+        self.main_label.setText(self.__ascii_art)
         self.main_label.setUpdatesEnabled(True)
