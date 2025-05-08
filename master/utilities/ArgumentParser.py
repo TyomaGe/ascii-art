@@ -40,5 +40,10 @@ class ArgumentParser:
             default=None,
             help="Define new image width and height"
         )
+        self.parser.add_argument(
+            "--invert",
+            action="store_true",
+            help="Invert ASCII art (negative effect)"
+        )
         arguments = self.parser.parse_args()
         return arguments

@@ -12,7 +12,8 @@ class ImageProcessor:
 
     def handle_size(self, image, size):
         if size is None:
-            return image.size
+            img_width, img_height = image.size
+            return img_width, img_height // 2
         try:
             width = int(size[0])
             height = int(size[1])

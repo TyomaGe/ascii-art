@@ -1,4 +1,4 @@
-from master.ascii_image import ASCIIArtHandler, ASCIIConverter, ImageProcessor
+from master.ascii_image import *
 from master.utilities import ArgumentParser
 from master.fabrics import ExceptionsFabric
 
@@ -18,9 +18,11 @@ def main():
         image = art_handler.load_image(image_path)
         size = image_processor.handle_size(image, args.size)
         gray_image = image_processor.convert_to_grayscale(image, size)
-        ascii_data = ascii_converter.pixels_to_ascii(gray_image)
+        ascii_data = ascii_converter.pixels_to_ascii(gray_image, args.invert)
         ascii_art = ascii_converter.create_ascii_art(ascii_data, size)
         art_handler.save_to_file(ascii_art, path_to_save)
+        ASCIIArtViewer(ascii_art, size)
+
     except exceptions as e:
         print(f"\n\033[91m{e}\033[0m\n")
 
