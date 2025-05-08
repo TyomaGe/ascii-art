@@ -20,7 +20,7 @@ pip install -r requirements.txt
 
 ## Запуск  
 ```
-python -m master.core.main  [-h] [--size WIDTH LENGTH] image_path path_to_save
+python -m master.core.main  [-h] [-i] [--size WIDTH LENGTH] image_path path_to_save
 ```
 
 ### Обязательные параметры  
@@ -30,7 +30,8 @@ python -m master.core.main  [-h] [--size WIDTH LENGTH] image_path path_to_save
 
 ### Опциональные параметры  
 
-***-s / --size WIDTH LENGTH*** - используем, если хотим поменять исходный размер картинки  
-***-h / --help*** - справочная информация
+***-h / --help*** - справочная информация  
+***-i / --invert*** - получение аски-арта в негативе  
+***-s / --size WIDTH LENGTH*** - используем, если хотим поменять исходный размер картинки
 
 
