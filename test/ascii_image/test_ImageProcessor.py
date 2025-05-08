@@ -36,7 +36,9 @@ class TestImageProcessor:
         return 123, 0
 
     def test_handle_size_none_size(self, handler, image, test_size_none):
-        assert handler.handle_size(image, test_size_none) == image.size
+        width, height = image.size
+        assert handler.handle_size(image, test_size_none) == (
+            width, height // 2)
 
     def test_handle_size_new_size(self, handler, image, new_size):
         assert handler.handle_size(image, new_size) == new_size

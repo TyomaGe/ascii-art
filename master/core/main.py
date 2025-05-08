@@ -1,5 +1,4 @@
-from master.ascii_image import ASCIIArtHandler, ASCIIConverter, ImageProcessor, \
-    ASCIIArtViewer
+from master.ascii_image import *
 from master.utilities import ArgumentParser
 from master.fabrics import ExceptionsFabric
 
