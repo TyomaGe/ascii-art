@@ -19,7 +19,7 @@ class TestASCIIConverter:
         assert len(result) == 4
         assert result[0] != result[1] != result[2] != result[3]
         assert result[0] == handler._ASCIIConverter__ASCII_CHAR[0]
-        assert result[3] == handler._ASCIIConverter__ASCII_CHAR[-6]
+        assert result[3] == handler._ASCIIConverter__ASCII_CHAR[-1]
 
     def test_pixels_to_ascii_char_range(self, handler, image):
         result = handler.pixels_to_ascii(image)

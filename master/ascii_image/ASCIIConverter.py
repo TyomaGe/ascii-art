@@ -1,11 +1,5 @@
 class ASCIIConverter:
-    __ASCII_CHAR = [
-        ' ', '_', '.', '"', '\'', '`', '^', ',', ':', '-',
-        '~', ';', '!', '|', '/', '=', '+', '*', '3', '5',
-        '7', 'J', 'C', 'L', 'T', 'V', 'Z', 'Y', 'X', 'U',
-        'E', 'N', 'K', 'A', 'H', 'D', 'R', 'Q', '0', 'B',
-        '$', '&', '8', 'M', 'W', '#', '%', '@'
-    ]
+    __ASCII_CHAR = list(' .",:;!~+-xmo*#W&8@')
 
     def pixels_to_ascii(self, image):
         pixels = image.getdata()
