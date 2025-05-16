@@ -10,12 +10,18 @@ class ASCIIColourConverter:
         proportion = 255 // (len(self.__ascii_chars) - 1)
         ascii_chars = list(
             reversed(self.__ascii_chars)) if invert else self.__ascii_chars
+        cache = {}
         result = []
         for r, g, b in pixels:
+            key = (r, g, b)
+            if key in cache:
+                result.append(cache[key])
+                continue
             brightness = int(0.299 * r + 0.587 * g + 0.114 * b)
             char = ascii_chars[
                 min(brightness // proportion, len(ascii_chars) - 1)]
             html_char = f'<span style="color: rgb({r},{g},{b})">{char}</span>'
+            cache[key] = html_char
             result.append(html_char)
         return result
 

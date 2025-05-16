@@ -23,8 +23,10 @@ class ASCIIArtViewer:
         self.__main_label.setUpdatesEnabled(False)
         if self.__is_html:
             self.__main_label.setTextFormat(Qt.TextFormat.RichText)
-            self.__main_label.setTextInteractionFlags(Qt.TextInteractionFlag.NoTextInteraction)
-            self.__main_label.setStyleSheet("QLabel { background-color: black; }")
+            self.__main_label.setTextInteractionFlags(
+                Qt.TextInteractionFlag.NoTextInteraction)
+            self.__main_label.setStyleSheet(
+                "QLabel { background-color: black; }")
             self.__main_label.setText(f"<pre>{self.__ascii_art}</pre>")
         else:
             self.__main_label.setTextFormat(Qt.TextFormat.PlainText)
