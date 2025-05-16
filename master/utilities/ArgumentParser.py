@@ -45,5 +45,10 @@ class ArgumentParser:
             action="store_true",
             help="Invert ASCII art (negative effect)"
         )
+        self.parser.add_argument(
+            "-c", "--colour",
+            action="store_true",
+            help="Generate ANSI art with colors"
+        )
         arguments = self.parser.parse_args()
         return arguments

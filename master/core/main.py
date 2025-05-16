@@ -7,6 +7,7 @@ def main():
     argument_parser = ArgumentParser()
     image_processor = ImageProcessor()
     ascii_converter = ASCIIConverter()
+    colour_converter = ASCIIColourConverter()
     art_handler = ASCIIArtHandler()
     exceptions = ExceptionsFabric().get_exceptions()
 
@@ -17,11 +18,20 @@ def main():
     try:
         image = art_handler.load_image(image_path)
         size = image_processor.handle_size(image, args.size)
-        gray_image = image_processor.convert_to_grayscale(image, size)
-        ascii_data = ascii_converter.pixels_to_ascii(gray_image, args.invert)
-        ascii_art = ascii_converter.create_ascii_art(ascii_data, size)
-        art_handler.save_to_file(ascii_art, path_to_save)
-        ASCIIArtViewer(ascii_art, size)
+
+        if args.colour:
+            rgb_image = image_processor.convert_to_rgb(image, size)
+            coloured_data = colour_converter.pixels_to_coloured_ascii(rgb_image, args.invert)
+            ascii_art = colour_converter.create_html_ascii_art(coloured_data, size)
+        else:
+            gray_image = image_processor.convert_to_grayscale(image, size)
+            ascii_data = ascii_converter.pixels_to_ascii(gray_image, args.invert)
+            ascii_art = ascii_converter.create_ascii_art(ascii_data, size)
+
+        if not args.colour:
+            art_handler.save_to_file(ascii_art, path_to_save)
+
+        ASCIIArtViewer(ascii_art, size, is_html=args.colour)
 
     except exceptions as e:
         print(f"\n\033[91m{e}\033[0m\n")

@@ -10,6 +10,10 @@ class ImageProcessor:
         resized_image = self.__resize_image(image, size)
         return resized_image.convert("L")
 
+    def convert_to_rgb(self, image, size):
+        resized_image = self.__resize_image(image, size)
+        return resized_image.convert("RGB")
+
     def handle_size(self, image, size):
         if size is None:
             img_width, img_height = image.size
@@ -20,7 +24,6 @@ class ImageProcessor:
         except (ValueError, TypeError) as e:
             raise InvalidSizeValueException(
                 "Width and height must be integers") from e
-
         if width <= 0:
             raise WrongImageWidthException("Width must be positive")
         if height <= 0:
