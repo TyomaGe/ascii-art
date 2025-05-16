@@ -1,25 +1,13 @@
 import argparse
+from .config import ARGPARSE_DESCRIPTION, ARGPARSE_EPILOG
 
 
 class ArgumentParser:
     def __init__(self):
-        description = (
-            "Convert images to ASCII art. The program processes standard "
-            "image formats (JPG, PNG, etc.)\nby converting each pixel to "
-            "a corresponding ASCII character,\nproducing art that can be "
-            "saved as a text file."
-        )
-        epilog = (
-            "Examples:\n"
-            "  python -m master.core.main ./image.jpg "
-            "./output.txt\n"
-            "  python -m master.core.main ./image.png "
-            "./output.txt --size 720 480\n"
-        )
         self.parser = argparse.ArgumentParser(
-                description=description,
-                epilog=epilog,
-                formatter_class=argparse.RawDescriptionHelpFormatter
+            description=ARGPARSE_DESCRIPTION,
+            epilog=ARGPARSE_EPILOG,
+            formatter_class=argparse.RawDescriptionHelpFormatter
         )
 
     def get_arguments(self):
@@ -29,7 +17,8 @@ class ArgumentParser:
             help="You need to specify the full path to the image"
         )
         self.parser.add_argument(
-            "path_to_save",
+            "-sv", "--save",
+            default=None,
             type=str,
             help="You need to specify the path where to save the art"
         )
@@ -43,7 +32,12 @@ class ArgumentParser:
         self.parser.add_argument(
             "-i", "--invert",
             action="store_true",
-            help="Invert ASCII art (negative effect)"
+            help="Invert ASCII-Art (negative effect)"
+        )
+        self.parser.add_argument(
+            "-c", "--colour",
+            action="store_true",
+            help="Generate coloured ASCII-Art"
         )
         arguments = self.parser.parse_args()
         return arguments

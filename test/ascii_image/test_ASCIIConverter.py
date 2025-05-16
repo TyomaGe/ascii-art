@@ -1,6 +1,7 @@
 import pytest
 from PIL import Image
 from master.ascii_image import ASCIIConverter
+from master.utilities import ASCII_CHAR
 
 
 class TestASCIIConverter:
@@ -18,12 +19,12 @@ class TestASCIIConverter:
         result = handler.pixels_to_ascii(image)
         assert len(result) == 4
         assert result[0] != result[1] != result[2] != result[3]
-        assert result[0] == handler._ASCIIConverter__ASCII_CHAR[0]
-        assert result[3] == handler._ASCIIConverter__ASCII_CHAR[-1]
+        assert result[0] == ASCII_CHAR[0]
+        assert result[3] == ASCII_CHAR[-1]
 
     def test_pixels_to_ascii_char_range(self, handler, image):
         result = handler.pixels_to_ascii(image)
-        valid_chars = handler._ASCIIConverter__ASCII_CHAR
+        valid_chars = ASCII_CHAR
         assert all(char in valid_chars for char in result)
 
     def test_create_ascii_art_formatting(self, handler):
@@ -33,7 +34,7 @@ class TestASCIIConverter:
         assert handler.create_ascii_art(test_data, size) == expected
 
     def test_pixels_to_ascii_inverted(self, handler, image):
-        original_chars = handler._ASCIIConverter__ASCII_CHAR
+        original_chars = ASCII_CHAR
         inverted_chars = original_chars[::-1]
         inverted_result = handler.pixels_to_ascii(image, invert=True)
         assert inverted_result[0] == inverted_chars[0]

@@ -5,11 +5,13 @@ from PyQt6.QtCore import Qt, QTimer
 
 
 class ASCIIArtViewer:
-    def __init__(self, ascii_art, size):
+    def __init__(self, ascii_art, size, is_coloured=False):
+        print(f"\n\033[92mThe image is rendering . . .\033[0m\n")
         self.__app = QApplication(sys.argv)
         self.__window = QMainWindow()
         self.__ascii_art = ascii_art
         self.__size = size
+        self.__is_coloured = is_coloured
         self.__setup_ui_components()
         self.__init_window_config()
         self.__setup_font()
@@ -17,6 +19,20 @@ class ASCIIArtViewer:
         self.__window_open()
         QTimer.singleShot(100, self.__finalize_setup)
         self.__window_close()
+
+    def __load_art(self):
+        self.__main_label.setUpdatesEnabled(False)
+        if self.__is_coloured:
+            self.__main_label.setTextFormat(Qt.TextFormat.RichText)
+            self.__main_label.setTextInteractionFlags(
+                Qt.TextInteractionFlag.NoTextInteraction)
+            self.__main_label.setStyleSheet(
+                "QLabel { background-color: black; }")
+            self.__main_label.setText(f"<pre>{self.__ascii_art}</pre>")
+        else:
+            self.__main_label.setTextFormat(Qt.TextFormat.PlainText)
+            self.__main_label.setText(self.__ascii_art)
+        self.__main_label.setUpdatesEnabled(True)
 
     def __setup_ui_components(self):
         self.__scroll = QScrollArea()
@@ -51,8 +67,3 @@ class ASCIIArtViewer:
 
     def __window_close(self):
         sys.exit(self.__app.exec())
-
-    def __load_art(self):
-        self.__main_label.setUpdatesEnabled(False)
-        self.__main_label.setText(self.__ascii_art)
-        self.__main_label.setUpdatesEnabled(True)
