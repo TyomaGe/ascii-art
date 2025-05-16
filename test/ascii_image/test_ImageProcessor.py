@@ -69,3 +69,7 @@ class TestImageProcessor:
     def test_convert_to_grayscale_preserves_data(self, handler, image):
         gray_image = handler.convert_to_grayscale(image, image.size)
         assert len(list(gray_image.getdata())) == 4
+
+    def test_convert_to_rgb_preserves_pixel_count(self, handler, image):
+        rgb_image = handler.convert_to_rgb(image, image.size)
+        assert len(list(rgb_image.getdata())) == 4

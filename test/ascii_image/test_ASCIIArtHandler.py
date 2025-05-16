@@ -10,6 +10,10 @@ class TestASCIIArtHandler:
         return ASCIIArtHandler()
 
     @pytest.fixture
+    def coloured_handler(self):
+        return ASCIIArtHandler(is_coloured=True)
+
+    @pytest.fixture
     def ascii_art(self):
         return "@_@"
 
@@ -46,3 +50,23 @@ class TestASCIIArtHandler:
         with open(image_path, 'r') as f:
             content = f.read()
         assert content.strip() == ascii_art.strip()
+
+    def test_save_to_file_html_success(self, coloured_handler, ascii_art,
+                                       tmp_path):
+        file_path = tmp_path / "art.html"
+        coloured_handler.save_to_file(ascii_art, str(file_path))
+        assert file_path.exists()
+        content = file_path.read_text()
+        assert "@_@" in content
+
+    def test_save_to_file_html_wrong_extension(self, coloured_handler,
+                                               ascii_art, tmp_path):
+        file_path = tmp_path / "wrong_format.txt"
+        with pytest.raises(WrongPathException):
+            coloured_handler.save_to_file(ascii_art, str(file_path))
+
+    def test_save_to_file_invalid_directory(self, handler, ascii_art,
+                                            tmp_path):
+        bad_path = tmp_path / "nonexistent" / "art.txt"
+        with pytest.raises(WrongPathException):
+            handler.save_to_file(ascii_art, str(bad_path))
