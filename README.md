@@ -43,6 +43,9 @@ python -m master.core.main image_path [-sv SAVE_PATH] [-s WIDTH HEIGHT] [-i] [-c
 
 ## 🧪 Примеры запуска
 ```
+python -m master.core.main ./photo.jpg -c
+```
+```
 python -m master.core.main ./cat.jpg -sv ./cat.txt
 ```  
 ```
