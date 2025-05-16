@@ -21,7 +21,13 @@ class ASCIIArtHandler:
                 f"File {path} is not a valid image"
             ) from e
 
-    def save_as_txt(self, ascii_art, path):
+    def save_to_file(self, ascii_art, path):
+        if self.__is_coloured:
+            self.__save_as_html(ascii_art, path)
+        else:
+            self.__save_as_txt(ascii_art, path)
+
+    def __save_as_txt(self, ascii_art, path):
         self.__check_valid_format_matching(path)
         try:
             with open(path, 'w') as file:
@@ -30,7 +36,7 @@ class ASCIIArtHandler:
         except IOError as e:
             raise WrongPathException(f"Could not write to file {path}") from e
 
-    def save_as_html(self, ascii_art, path):
+    def __save_as_html(self, ascii_art, path):
         self.__check_valid_format_matching(path)
         try:
             html_content = HTML_TEMPLATE.format(ascii_art=ascii_art)

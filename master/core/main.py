@@ -8,11 +8,12 @@ def main():
     args = argument_parser.get_arguments()
     image_path = args.image_path
     path_to_save = args.save
+    is_coloured = args.colour
 
     image_processor = ImageProcessor()
     ascii_converter = ASCIIConverter()
     colour_converter = ASCIIColourConverter()
-    art_handler = ASCIIArtHandler(args.colour)
+    art_handler = ASCIIArtHandler(is_coloured)
     exceptions = ExceptionsFabric().get_exceptions()
 
     try:
@@ -30,11 +31,9 @@ def main():
             ascii_data = ascii_converter.pixels_to_ascii(gray_image,
                                                          args.invert)
             ascii_art = ascii_converter.create_ascii_art(ascii_data, size)
-
         if path_to_save:
-            art_handler.save_as_txt(ascii_art, path_to_save)
-        ASCIIArtViewer(ascii_art, size, is_coloured=args.colour)
-
+            art_handler.save_to_file(ascii_art, path_to_save)
+        ASCIIArtViewer(ascii_art, size, is_coloured)
     except exceptions as e:
         print(f"\n\033[91m{e}\033[0m\n")
 
