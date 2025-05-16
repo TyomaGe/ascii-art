@@ -25,10 +25,12 @@ class ASCIIColourConverter:
             result.append(html_char)
         return result
 
-    def create_html_ascii_art(self, ascii_data, size):
+    def create_coloured_ascii_art(self, ascii_data, size):
         width = size[0]
         lines = [
             "".join(ascii_data[i:i + width])
             for i in range(0, len(ascii_data), width)
         ]
-        return "<br>".join(lines)
+        result = "<br>".join(lines)
+        print(f"\n\033[92mArt is created successfully\033[0m")
+        return result

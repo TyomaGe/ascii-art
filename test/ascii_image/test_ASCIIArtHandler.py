@@ -37,11 +37,11 @@ class TestASCIIArtHandler:
     def test_save_to_file_non_txt_file(self, handler, ascii_art, tmp_path):
         image_path = tmp_path / "image.png"
         with pytest.raises(WrongPathException):
-            handler.save_to_file(ascii_art, str(image_path))
+            handler.save_as_txt(ascii_art, str(image_path))
 
     def test_save_to_file_success(self, handler, ascii_art, tmp_path):
         image_path = tmp_path / "art.txt"
-        handler.save_to_file(ascii_art, str(image_path))
+        handler.save_as_txt(ascii_art, str(image_path))
         assert image_path.exists()
         with open(image_path, 'r') as f:
             content = f.read()

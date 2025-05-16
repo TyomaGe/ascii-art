@@ -17,5 +17,7 @@ class ASCIIConverter:
     def create_ascii_art(self, image_data, size):
         pixel_count = len(image_data)
         width = size[0]
-        return "\n".join(
+        result = "\n".join(
             image_data[i:i + width] for i in range(0, pixel_count, width))
+        print(f"\n\033[92mArt is created successfully\033[0m")
+        return result

@@ -5,12 +5,13 @@ from PyQt6.QtCore import Qt, QTimer
 
 
 class ASCIIArtViewer:
-    def __init__(self, ascii_art, size, is_html=False):
+    def __init__(self, ascii_art, size, is_coloured=False):
+        print(f"\033[92mThe image is rendering . . .\033[0m\n")
         self.__app = QApplication(sys.argv)
         self.__window = QMainWindow()
         self.__ascii_art = ascii_art
         self.__size = size
-        self.__is_html = is_html
+        self.__is_coloured = is_coloured
         self.__setup_ui_components()
         self.__init_window_config()
         self.__setup_font()
@@ -21,7 +22,7 @@ class ASCIIArtViewer:
 
     def __load_art(self):
         self.__main_label.setUpdatesEnabled(False)
-        if self.__is_html:
+        if self.__is_coloured:
             self.__main_label.setTextFormat(Qt.TextFormat.RichText)
             self.__main_label.setTextInteractionFlags(
                 Qt.TextInteractionFlag.NoTextInteraction)
