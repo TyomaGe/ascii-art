@@ -6,7 +6,7 @@ from PyQt6.QtCore import Qt, QTimer
 
 class ASCIIArtViewer:
     def __init__(self, ascii_art, size, is_coloured=False):
-        print(f"\033[92mThe image is rendering . . .\033[0m\n")
+        print(f"\n\033[92mThe image is rendering . . .\033[0m\n")
         self.__app = QApplication(sys.argv)
         self.__window = QMainWindow()
         self.__ascii_art = ascii_art

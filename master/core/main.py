@@ -7,7 +7,7 @@ def main():
     argument_parser = ArgumentParser()
     args = argument_parser.get_arguments()
     image_path = args.image_path
-    path_to_save = args.path_to_save
+    path_to_save = args.save
 
     image_processor = ImageProcessor()
     ascii_converter = ASCIIConverter()
@@ -31,7 +31,8 @@ def main():
                                                          args.invert)
             ascii_art = ascii_converter.create_ascii_art(ascii_data, size)
 
-        art_handler.save_as_txt(ascii_art, path_to_save)
+        if path_to_save:
+            art_handler.save_as_txt(ascii_art, path_to_save)
         ASCIIArtViewer(ascii_art, size, is_coloured=args.colour)
 
     except exceptions as e:

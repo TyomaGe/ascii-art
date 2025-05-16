@@ -29,7 +29,8 @@ class ArgumentParser:
             help="You need to specify the full path to the image"
         )
         self.parser.add_argument(
-            "path_to_save",
+            "-sv", "--save",
+            default=None,
             type=str,
             help="You need to specify the path where to save the art"
         )

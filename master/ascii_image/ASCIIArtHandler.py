@@ -26,7 +26,7 @@ class ASCIIArtHandler:
         try:
             with open(path, 'w') as file:
                 file.write(ascii_art)
-                print(f"\n\033[92mArt is saved successfully\033[0m\n")
+                print(f"\n\033[92mArt is saved successfully\033[0m")
         except IOError as e:
             raise WrongPathException(f"Could not write to file {path}") from e
 
@@ -36,7 +36,7 @@ class ASCIIArtHandler:
             html_content = HTML_TEMPLATE.format(ascii_art=ascii_art)
             with open(path, 'w') as file:
                 file.write(html_content)
-                print(f"\n\033[92mArt is saved successfully\033[0m\n")
+                print(f"\n\033[92mArt is saved successfully\033[0m")
         except IOError as e:
             raise WrongPathException(f"Could not write to file {path}") from e
 
